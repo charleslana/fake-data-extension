@@ -9,14 +9,14 @@ function createContextMenus() {
 		chrome.contextMenus.create({
 			id: 'fillFocused',
 			parentId: 'fakerDataMenu',
-			title: 'Preencher campo focado',
+			title: 'Preencher campo focado (Ctrl+Shift+F)',
 			contexts: ['editable'],
 		});
 
 		chrome.contextMenus.create({
 			id: 'fillAll',
 			parentId: 'fakerDataMenu',
-			title: 'Preencher todos os campos',
+			title: 'Preencher todos os campos (Ctrl+Shift+Y)',
 			contexts: ['editable'],
 		});
 	});
