@@ -1,4 +1,6 @@
-import { faker } from '@faker-js/faker';
+import { Faker, faker as fakerEN } from '@faker-js/faker';
+import { faker as fakerPT } from '@faker-js/faker/locale/pt_BR';
+import { faker as fakerES } from '@faker-js/faker/locale/es';
 
 async function fillFocusedInput() {
 	const activeElement = document.activeElement as
@@ -36,6 +38,7 @@ async function fillAllInputs() {
 }
 
 async function getRandomData(inputType: string): Promise<string> {
+	const faker = await getFaker();
 	switch (inputType) {
 		case 'text':
 			return faker.person.firstName();
@@ -84,4 +87,26 @@ function showPassword(activeElement: HTMLInputElement | HTMLTextAreaElement) {
 			activeElement.setAttribute('type', 'text');
 		}
 	});
+}
+
+async function getLanguage(): Promise<string> {
+	return new Promise((resolve) => {
+		chrome.storage.sync.get(['language'], (data) => {
+			resolve(data.language || 'en');
+		});
+	});
+}
+
+async function getFaker(): Promise<Faker> {
+	const language = await getLanguage();
+	let faker = fakerEN;
+	switch (language) {
+		case 'pt_BR':
+			faker = fakerPT;
+			break;
+		case 'es':
+			faker = fakerES;
+			break;
+	}
+	return faker;
 }

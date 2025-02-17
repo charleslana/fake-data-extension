@@ -8,10 +8,14 @@
 // });
 
 document.addEventListener('DOMContentLoaded', () => {
-	chrome.storage.sync.get(['customDomain'], (data) => {
+	chrome.storage.sync.get(['customDomain', 'language'], (data) => {
 		if (data.customDomain) {
 			(document.getElementById('customDomain') as HTMLInputElement).value =
 				data.customDomain;
+		}
+		if (data.language) {
+			(document.getElementById('language') as HTMLSelectElement).value =
+				data.language;
 		}
 	});
 });
@@ -42,7 +46,9 @@ document.getElementById('saveSettings')!.addEventListener('click', () => {
 	const showPassword = (
 		document.getElementById('showPassword') as HTMLInputElement
 	).checked;
-	chrome.storage.sync.set({ customDomain, showPassword }, () => {
+	const language = (document.getElementById('language') as HTMLInputElement)
+		.value;
+	chrome.storage.sync.set({ customDomain, showPassword, language }, () => {
 		alert('Configurações salva!');
 	});
 });
