@@ -38,7 +38,7 @@ module.exports = {
 				stringArrayEncoding: ['rc4'],
 				identifierNamesGenerator: 'hexadecimal',
 			},
-			['content.js']
+			['content.js', 'background.js']
 		),
 	],
 };
