@@ -39,17 +39,22 @@ async function fillAllInputs() {
 
 async function getRandomData(inputType: string): Promise<string> {
 	const faker = await getFaker();
+	const { limitTextLength, maxTextLength } = await getLimitSettings();
+	const maxLen = limitTextLength ? maxTextLength : undefined;
 	switch (inputType) {
 		case 'text':
-			return faker.person.firstName();
+			return generateLimitedText(faker.person.firstName(), maxLen);
 		case 'email': {
 			const domain = await getCustomDomain();
-			return faker.internet.email({ provider: domain });
+			const emailUser = faker.internet.username();
+			const totalMax = maxLen ? maxLen - domain.length - 1 : undefined;
+			return generateLimitedText(emailUser, totalMax) + '@' + domain;
 		}
 		case 'number':
-			return faker.string.numeric(10);
+			return faker.string.numeric(maxLen || 10);
 		case 'password':
-			return faker.internet.password();
+			const password = faker.internet.password();
+			return generateLimitedText(password, maxLen);
 		default:
 			return '';
 	}
@@ -109,4 +114,25 @@ async function getFaker(): Promise<Faker> {
 			break;
 	}
 	return faker;
+}
+
+async function getLimitSettings(): Promise<{
+	limitTextLength: boolean;
+	maxTextLength: number;
+}> {
+	return new Promise((resolve) => {
+		chrome.storage.sync.get(['limitTextLength', 'maxTextLength'], (data) => {
+			resolve({
+				limitTextLength: data.limitTextLength || false,
+				maxTextLength: data.maxTextLength || 255,
+			});
+		});
+	});
+}
+
+function generateLimitedText(text: string, maxLen?: number): string {
+	if (maxLen && text.length > maxLen) {
+		return text.slice(0, maxLen);
+	}
+	return text;
 }

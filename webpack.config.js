@@ -1,6 +1,6 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const WebpackObfuscator = require('webpack-obfuscator');
+// const WebpackObfuscator = require('webpack-obfuscator');
 
 module.exports = {
 	entry: {
@@ -28,17 +28,17 @@ module.exports = {
 	mode: 'production',
 	plugins: [
 		new CleanWebpackPlugin(),
-		new WebpackObfuscator(
-			{
-				compact: true,
-				controlFlowFlattening: true,
-				numbersToExpressions: true,
-				simplify: true,
-				stringArray: true,
-				stringArrayEncoding: ['rc4'],
-				identifierNamesGenerator: 'hexadecimal',
-			},
-			['content.js', 'background.js']
-		),
+		// new WebpackObfuscator(
+		// 	{
+		// 		compact: true,
+		// 		controlFlowFlattening: true,
+		// 		numbersToExpressions: true,
+		// 		simplify: true,
+		// 		stringArray: true,
+		// 		stringArrayEncoding: ['rc4'],
+		// 		identifierNamesGenerator: 'hexadecimal',
+		// 	},
+		// 	['content.js', 'background.js']
+		// ),
 	],
 };
