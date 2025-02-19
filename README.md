@@ -30,4 +30,4 @@
 
 ## Projeto construído para todos QA!
 
-Fique a vontade para apontar melhorias ou até mesmo atuar como colaborador projeto!
+Fique a vontade para apontar melhorias ou até mesmo atuar como colaborador do projeto!
