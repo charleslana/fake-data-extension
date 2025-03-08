@@ -12,8 +12,7 @@ async function fillFocusedInput() {
 	) {
 		const inputType =
 			activeElement instanceof HTMLInputElement ? activeElement.type : 'text';
-		const value = await getRandomData(inputType);
-		activeElement.value = value;
+		activeElement.value = await getRandomData(inputType);
 		showPassword(activeElement);
 		const event = new Event('input', { bubbles: true });
 		activeElement.dispatchEvent(event);
@@ -28,8 +27,7 @@ async function fillAllInputs() {
 			input instanceof HTMLTextAreaElement
 		) {
 			const inputType = input instanceof HTMLInputElement ? input.type : 'text';
-			const value = await getRandomData(inputType);
-			input.value = value;
+			input.value = await getRandomData(inputType);
 			showPassword(input);
 			const event = new Event('input', { bubbles: true });
 			input.dispatchEvent(event);
@@ -51,10 +49,9 @@ async function getRandomData(inputType: string): Promise<string> {
 			return generateLimitedText(emailUser, totalMax) + '@' + domain;
 		}
 		case 'number':
-			return faker.string.numeric(maxLen || 10);
+			return faker.string.numeric(maxLen ?? 10);
 		case 'password':
-			const password = faker.internet.password();
-			return generateLimitedText(password, maxLen);
+			return generateLimitedText(faker.internet.password(), maxLen);
 		default:
 			return '';
 	}
@@ -69,20 +66,17 @@ async function getCustomDomain(): Promise<string> {
 	});
 }
 
-(window as any).fillFocusedInput = fillFocusedInput;
-(window as any).fillAllInputs = fillAllInputs;
-
-chrome.runtime.sendMessage({
+await chrome.runtime.sendMessage({
 	type: 'updateIcon',
-	isDarkMode: window.matchMedia('(prefers-color-scheme: dark)').matches,
+	isDarkMode: window.matchMedia('(prefers-color-scheme: dark)').matches
 });
 
 window
 	.matchMedia('(prefers-color-scheme: dark)')
-	.addEventListener('change', (event) => {
-		chrome.runtime.sendMessage({
+	.addEventListener('change', async (event) => {
+		await chrome.runtime.sendMessage({
 			type: 'updateIcon',
-			isDarkMode: event.matches,
+			isDarkMode: event.matches
 		});
 	});
 
@@ -124,7 +118,7 @@ async function getLimitSettings(): Promise<{
 		chrome.storage.sync.get(['limitTextLength', 'maxTextLength'], (data) => {
 			resolve({
 				limitTextLength: data.limitTextLength || false,
-				maxTextLength: data.maxTextLength || 255,
+				maxTextLength: data.maxTextLength || 255
 			});
 		});
 	});
@@ -136,3 +130,71 @@ function generateLimitedText(text: string, maxLen?: number): string {
 	}
 	return text;
 }
+
+async function fillAllSelects() {
+	const selects = document.querySelectorAll<HTMLSelectElement>('select');
+	const randomSelects = await getRandomSelectsSetting();
+	for (const select of selects) {
+		if (randomSelects) {
+			selectRandomOption(select);
+		} else {
+			selectFirstAvailableOption(select);
+		}
+	}
+}
+
+function selectFirstAvailableOption(select: HTMLSelectElement) {
+	for (const option of select.options) {
+		if (option.value.trim() !== '') {
+			select.value = option.value;
+			const event = new Event('change', { bubbles: true });
+			select.dispatchEvent(event);
+			break;
+		}
+	}
+}
+
+function selectRandomOption(select: HTMLSelectElement) {
+	const availableOptions = Array.from(select.options).filter(
+		(option) => option.value.trim() !== ''
+	);
+	if (availableOptions.length > 0) {
+		const randomIndex = Math.floor(Math.random() * availableOptions.length);
+		select.value = availableOptions[randomIndex].value;
+		const event = new Event('change', { bubbles: true });
+		select.dispatchEvent(event);
+	}
+}
+
+async function getRandomSelectsSetting(): Promise<boolean> {
+	return new Promise((resolve) => {
+		chrome.storage.sync.get(['randomSelects'], (data) => {
+			resolve(data.randomSelects || false);
+		});
+	});
+}
+
+async function fillAllCheckboxes() {
+	const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"]');
+	const autoCheckCheckboxes = await getAutoCheckCheckboxesSetting();
+	if (autoCheckCheckboxes) {
+		for (const checkbox of checkboxes) {
+			checkbox.checked = true;
+			const event = new Event('change', { bubbles: true });
+			checkbox.dispatchEvent(event);
+		}
+	}
+}
+
+async function getAutoCheckCheckboxesSetting(): Promise<boolean> {
+	return new Promise((resolve) => {
+		chrome.storage.sync.get(['autoCheckCheckboxes'], (data) => {
+			resolve(data.autoCheckCheckboxes ?? true);
+		});
+	});
+}
+
+(window as any).fillFocusedInput = fillFocusedInput;
+(window as any).fillAllInputs = fillAllInputs;
+(window as any).fillAllSelects = fillAllSelects;
+(window as any).fillAllCheckboxes = fillAllCheckboxes;

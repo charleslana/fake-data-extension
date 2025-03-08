@@ -1,5 +1,12 @@
 # Fake Data By Charles
 
+# Atualizações
+
+## Versão 0.0.2
+
+- Adicionado preenchimento de selects
+- Adicionado preenchimento de checkboxes
+
 ## Passo a Passo
 
 ## Faça o clone do projeto
@@ -28,6 +35,6 @@
 
 ![Configurações](screenshots/6.png)
 
-## Projeto construído para todos QA!
+## 6. Configurações
 
-Fique a vontade para apontar melhorias ou até mesmo atuar como colaborador do projeto!
+![Configurações](screenshots/7.png)

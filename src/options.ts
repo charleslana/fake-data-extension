@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			'language',
 			'limitTextLength',
 			'maxTextLength',
+			'randomSelects',
+			'autoCheckCheckboxes'
 		],
 		(data) => {
 			const customDomainInput = document.getElementById(
@@ -22,6 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			) as HTMLInputElement;
 			const maxTextLengthInput = document.getElementById(
 				'maxTextLength'
+			) as HTMLInputElement;
+			const randomSelectsCheckbox = document.getElementById(
+				'randomSelects'
+			) as HTMLInputElement;
+			const autoCheckCheckboxesCheckbox = document.getElementById(
+				'autoCheckCheckboxes'
 			) as HTMLInputElement;
 			if (data.customDomain) {
 				customDomainInput.value = data.customDomain;
@@ -42,6 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			limitTextLengthCheckbox.addEventListener('change', () => {
 				maxTextLengthInput.disabled = !limitTextLengthCheckbox.checked;
 			});
+			if (data.randomSelects) {
+				randomSelectsCheckbox.checked = data.randomSelects;
+			}
+			if (data.autoCheckCheckboxes) {
+				autoCheckCheckboxesCheckbox.checked = data.autoCheckCheckboxes;
+			}
 		}
 	);
 });
@@ -61,8 +75,14 @@ document.getElementById('saveSettings')!.addEventListener('click', () => {
 	const maxTextLength = (
 		document.getElementById('maxTextLength') as HTMLInputElement
 	).value;
+	const randomSelects = (
+		document.getElementById('randomSelects') as HTMLInputElement
+	).checked;
+	const autoCheckCheckboxes = (
+		document.getElementById('autoCheckCheckboxes') as HTMLInputElement
+	).checked;
 	chrome.storage.sync.set(
-		{ customDomain, showPassword, language, limitTextLength, maxTextLength },
+		{ customDomain, showPassword, language, limitTextLength, maxTextLength, randomSelects, autoCheckCheckboxes },
 		() => {
 			alert('Configurações salva!');
 		}
