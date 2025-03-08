@@ -35,6 +35,6 @@
 
 ![Configurações](screenshots/6.png)
 
-## 6. Configurações
+## 7. Configurações
 
 ![Configurações](screenshots/7.png)
