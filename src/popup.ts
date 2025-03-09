@@ -10,6 +10,7 @@ document.getElementById('fillForm')!.addEventListener('click', () => {
 				(window as any).fillAllInputs();
 				(window as any).fillAllSelects();
 				(window as any).fillAllCheckboxes();
+				(window as any).fillAllRadios();
 			}
 		});
 	});

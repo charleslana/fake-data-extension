@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Configurações</title>
-		<link rel="stylesheet" href="styles.css" />
-		<link rel="stylesheet" href="bulma.min.css" />
-	</head>
-	<body class="has-background-light">
-		<div
-			class="box is-flex is-flex-direction-column is-justify-content-space-between is-radiusless"
-			style="height: 100vh"
-		>
-			<div class="mb-5">
-				<h2 class="title is-4 has-text-centered">Fake Data</h2>
-				<div class="card">
-					<div class="card-content">
-						<div class="content has-text-centered">
-							Atalho Ctrl+Shift+F para preencher apenas um campo
-							<small>(Mantenha o campo focado)</small>
-						</div>
-						<div class="content has-text-centered">
-							Atalho Ctrl+Shift+Y para preencher todos os campos
-						</div>
-					</div>
+<head>
+	<meta charset="UTF-8" />
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<title>Configurações</title>
+	<link href="styles.css" rel="stylesheet" />
+	<link href="bulma.min.css" rel="stylesheet" />
+</head>
+<body class="has-background-light">
+<div
+	class="box is-flex is-flex-direction-column is-justify-content-space-between is-radiusless"
+	style="height: 100vh"
+>
+	<div class="mb-5">
+		<h2 class="title is-4 has-text-centered">Fake Data</h2>
+		<div class="card">
+			<div class="card-content">
+				<div class="content has-text-centered">
+					Atalho Ctrl+Shift+F para preencher apenas um campo
+					<small>(Mantenha o campo focado)</small>
 				</div>
-				<div class="buttons is-centered">
-					<button id="fillForm" class="button is-primary is-fullwidth">
-						Preencher todos os campos
-					</button>
-					<button id="openSettings" class="button is-link is-fullwidth">
-						Abrir configurações
-					</button>
+				<div class="content has-text-centered">
+					Atalho Ctrl+Shift+Y para preencher todos os campos
 				</div>
 			</div>
-			<footer class="has-text-centered">
-				<small>Developed by Charles</small>
-				<p class="mt-5"></p>
-			</footer>
 		</div>
-		<script src="dist/popup.js"></script>
-	</body>
+		<div class="buttons is-centered">
+			<button class="button is-primary is-fullwidth" id="fillForm">
+				Preencher todos os campos
+			</button>
+			<button class="button is-link is-fullwidth" id="openSettings">
+				Abrir configurações
+			</button>
+		</div>
+	</div>
+	<footer class="has-text-centered">
+		<small>Developed by Charles</small>
+		<p class="mt-5"></p>
+	</footer>
+</div>
+<script src="dist/popup.js"></script>
+</body>
 </html>

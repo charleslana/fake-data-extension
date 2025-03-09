@@ -1,45 +1,55 @@
 {
-	"manifest_version": 3,
-	"name": "Fake Data By Charles",
-	"version": "0.0.2",
-	"description": "Preenche formulários automaticamente com dados falsos.",
-	"icons": {
-		"16": "icons/icon16.png",
-		"48": "icons/icon48.png",
-		"128": "icons/icon128.png"
-	},
-	"permissions": ["storage", "contextMenus", "scripting"],
-	"host_permissions": ["<all_urls>"],
-	"background": {
-		"service_worker": "dist/background.js"
-	},
-	"action": {
-		"default_popup": "popup.html",
-		"default_icon": "icons/icon48.png"
-	},
-	"content_scripts": [
-		{
-			"matches": ["<all_urls>"],
-			"js": ["dist/content.js"]
-		}
-	],
-	"options_page": "options.html",
-	"commands": {
-		"fill-focused": {
-			"suggested_key": {
-				"default": "Ctrl+Shift+F"
-			},
-			"description": "Preencher apenas o campo em foco"
-		},
-		"fill-all": {
-			"suggested_key": {
-				"default": "Ctrl+Shift+Y",
-				"windows": "Ctrl+Shift+Y",
-				"mac": "Command+Shift+Y",
-				"chromeos": "Ctrl+Shift+Y",
-				"linux": "Ctrl+Shift+Y"
-			},
-			"description": "Preencher todos os campos"
-		}
-	}
+  "manifest_version": 3,
+  "name": "Fake Data By Charles",
+  "version": "0.0.3",
+  "description": "Preenche formulários automaticamente com dados falsos.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "contextMenus",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "dist/background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/icon48.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "dist/content.js"
+      ]
+    }
+  ],
+  "options_page": "options.html",
+  "commands": {
+    "fill-focused": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F"
+      },
+      "description": "Preencher apenas o campo em foco"
+    },
+    "fill-all": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "windows": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y",
+        "chromeos": "Ctrl+Shift+Y",
+        "linux": "Ctrl+Shift+Y"
+      },
+      "description": "Preencher todos os campos"
+    }
+  }
 }

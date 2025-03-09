@@ -2,6 +2,10 @@
 
 # Atualizações
 
+## Versão 0.0.3
+
+- Adicionado preenchimento de radios
+
 ## Versão 0.0.2
 
 - Adicionado preenchimento de selects

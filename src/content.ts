@@ -194,7 +194,38 @@ async function getAutoCheckCheckboxesSetting(): Promise<boolean> {
 	});
 }
 
+async function fillAllRadios() {
+	const radios = document.querySelectorAll<HTMLInputElement>('input[type="radio"]');
+	const randomRadios = await getRandomRadiosSetting();
+	const groups: { [key: string]: HTMLInputElement[] } = {};
+	radios.forEach((radio) => {
+		if (!groups[radio.name]) {
+			groups[radio.name] = [];
+		}
+		groups[radio.name].push(radio);
+	});
+	Object.values(groups).forEach((group) => {
+		if (group.length > 0) {
+			const selectedRadio = randomRadios
+				? group[Math.floor(Math.random() * group.length)]
+				: group[0];
+			selectedRadio.checked = true;
+			const event = new Event('change', { bubbles: true });
+			selectedRadio.dispatchEvent(event);
+		}
+	});
+}
+
+async function getRandomRadiosSetting(): Promise<boolean> {
+	return new Promise((resolve) => {
+		chrome.storage.sync.get(['randomRadios'], (data) => {
+			resolve(data.randomRadios || false);
+		});
+	});
+}
+
 (window as any).fillFocusedInput = fillFocusedInput;
 (window as any).fillAllInputs = fillAllInputs;
 (window as any).fillAllSelects = fillAllSelects;
 (window as any).fillAllCheckboxes = fillAllCheckboxes;
+(window as any).fillAllRadios = fillAllRadios;

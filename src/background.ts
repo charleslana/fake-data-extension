@@ -53,6 +53,7 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
 				(window as any).fillAllInputs();
 				(window as any).fillAllSelects();
 				(window as any).fillAllCheckboxes();
+				(window as any).fillAllRadios();
 			}
 		});
 	}
@@ -76,6 +77,7 @@ chrome.commands.onCommand.addListener((command) => {
 					(window as any).fillAllInputs();
 					(window as any).fillAllSelects();
 					(window as any).fillAllCheckboxes();
+					(window as any).fillAllRadios();
 				}
 			});
 		}

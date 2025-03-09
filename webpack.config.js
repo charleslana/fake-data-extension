@@ -7,27 +7,27 @@ module.exports = {
 		content: './src/content.ts',
 		background: './src/background.ts',
 		popup: './src/popup.ts',
-		options: './src/options.ts',
+		options: './src/options.ts'
 	},
 	output: {
 		filename: '[name].js',
-		path: path.resolve(__dirname, 'dist'),
+		path: path.resolve(__dirname, 'dist')
 	},
 	resolve: {
-		extensions: ['.ts', '.js'],
+		extensions: ['.ts', '.js']
 	},
 	module: {
 		rules: [
 			{
 				test: /\.ts$/,
 				use: 'ts-loader',
-				exclude: /node_modules/,
-			},
-		],
+				exclude: /node_modules/
+			}
+		]
 	},
 	mode: 'production',
 	plugins: [
-		new CleanWebpackPlugin(),
+		new CleanWebpackPlugin()
 		// new WebpackObfuscator(
 		// 	{
 		// 		compact: true,
@@ -40,5 +40,5 @@ module.exports = {
 		// 	},
 		// 	['content.js', 'background.js']
 		// ),
-	],
+	]
 };
