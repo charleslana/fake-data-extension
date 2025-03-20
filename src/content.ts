@@ -11,11 +11,14 @@ async function fillFocusedInput() {
 		(activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')
 	) {
 		const inputType =
-			activeElement instanceof HTMLInputElement ? activeElement.type : 'text';
-		activeElement.value = await getRandomData(inputType);
-		showPassword(activeElement);
-		const event = new Event('input', { bubbles: true });
-		activeElement.dispatchEvent(event);
+			activeElement instanceof HTMLInputElement ? activeElement.type : 'textarea';
+		const randomString = await getRandomData(inputType);
+		if (randomString !== '') {
+			activeElement.value = randomString;
+			showPassword(activeElement);
+			const event = new Event('input', { bubbles: true });
+			activeElement.dispatchEvent(event);
+		}
 	}
 }
 
@@ -26,11 +29,14 @@ async function fillAllInputs() {
 			input instanceof HTMLInputElement ||
 			input instanceof HTMLTextAreaElement
 		) {
-			const inputType = input instanceof HTMLInputElement ? input.type : 'text';
-			input.value = await getRandomData(inputType);
-			showPassword(input);
-			const event = new Event('input', { bubbles: true });
-			input.dispatchEvent(event);
+			const inputType = input instanceof HTMLInputElement ? input.type : 'textarea';
+			const randomString = await getRandomData(inputType);
+			if (randomString !== '') {
+				input.value = randomString;
+				showPassword(input);
+				const event = new Event('input', { bubbles: true });
+				input.dispatchEvent(event);
+			}
 		}
 	}
 }
@@ -41,6 +47,7 @@ async function getRandomData(inputType: string): Promise<string> {
 	const maxLen = limitTextLength ? maxTextLength : undefined;
 	switch (inputType) {
 		case 'text':
+		case 'search':
 			return generateLimitedText(faker.person.firstName(), maxLen);
 		case 'email': {
 			const domain = await getCustomDomain();
@@ -52,6 +59,33 @@ async function getRandomData(inputType: string): Promise<string> {
 			return faker.string.numeric(maxLen ?? 10);
 		case 'password':
 			return generateLimitedText(faker.internet.password(), maxLen);
+		case 'textarea':
+			return generateLimitedText(faker.lorem.sentences(2), maxLen);
+		case 'date':
+			return faker.date.anytime().toISOString().split('T')[0];
+		case 'time':
+			return faker.date.anytime().toISOString().split('T')[1].substring(0, 5);
+		case 'datetime-local': {
+			const date = faker.date.anytime();
+			return date.toISOString().slice(0, 16);
+		}
+		case 'month': {
+			const date = faker.date.anytime();
+			return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+		}
+		case 'week': {
+			const date = faker.date.anytime();
+			const week = Math.ceil(date.getDate() / 7);
+			return `${date.getFullYear()}-W${String(week).padStart(2, '0')}`;
+		}
+		case 'color':
+			return faker.color.rgb();
+		case 'url':
+			return faker.internet.url();
+		case 'tel':
+			return faker.phone.number();
+		case 'range':
+			return String(faker.number.int({ min: 1, max: 100 }));
 		default:
 			return '';
 	}

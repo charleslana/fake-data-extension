@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>Formulário de Teste</title>
+</head>
+<body>
+<h2>Formulário de Teste</h2>
+<form onsubmit="mostrarDados(event)">
+	<label for="text">Texto:</label>
+	<input id="text" name="text" required type="text"><br><br>
+
+	<label for="email">Email:</label>
+	<input id="email" name="email" required type="email"><br><br>
+
+	<label for="password">Senha:</label>
+	<input id="password" name="password" required type="password"><br><br>
+
+	<label for="number">Número:</label>
+	<input id="number" max="100" min="1" name="number" required type="number"><br><br>
+
+	<label for="date">Data:</label>
+	<input id="date" name="date" required type="date"><br><br>
+
+	<label for="time">Hora:</label>
+	<input id="time" name="time" required type="time"><br><br>
+
+	<label for="datetime">Data e Hora:</label>
+	<input id="datetime" name="datetime" required type="datetime-local"><br><br>
+
+	<label for="month">Mês:</label>
+	<input id="month" name="month" required type="month"><br><br>
+
+	<label for="week">Semana:</label>
+	<input id="week" name="week" required type="week"><br><br>
+
+	<label for="color">Cor:</label>
+	<input id="color" name="color" required type="color"><br><br>
+
+	<label for="url">URL:</label>
+	<input id="url" name="url" required type="url"><br><br>
+
+	<label for="tel">Telefone:</label>
+	<input id="tel" name="tel" required type="tel"><br><br>
+
+	<label for="search">Pesquisa:</label>
+	<input id="search" name="search" required type="search"><br><br>
+
+	<label for="range">Faixa:</label>
+	<input id="range" max="100" min="1" name="range" required type="range"><br><br>
+
+	<label for="file">Arquivo:</label>
+	<input id="file" name="file" type="file"><br><br>
+
+	<label for="hidden">Oculto:</label>
+	<input id="hidden" name="hidden" type="hidden"><br><br>
+
+	<label for="textarea">Texto longo:</label><br>
+	<textarea cols="30" id="textarea" name="textarea" required rows="4"></textarea><br><br>
+
+	<label for="select">Selecione uma opção:</label>
+	<select id="select" name="select" required>
+		<option value="">Escolha...</option>
+		<option value="opcao1">Opção 1</option>
+		<option value="opcao2">Opção 2</option>
+		<option value="opcao3">Opção 3</option>
+	</select><br><br>
+
+	<fieldset>
+		<legend>Escolha uma opção:</legend>
+		<input id="radio1" name="radio" required type="radio" value="radio1">
+		<label for="radio1">Opção 1</label>
+		<input id="radio2" name="radio" type="radio" value="radio2">
+		<label for="radio2">Opção 2</label>
+	</fieldset>
+	<br>
+
+	<fieldset>
+		<legend>Marque suas preferências:</legend>
+		<input id="checkbox1" name="checkbox1" required type="checkbox">
+		<label for="checkbox1">Opção A</label>
+		<input id="checkbox2" name="checkbox2" type="checkbox">
+		<label for="checkbox2">Opção B</label>
+	</fieldset>
+	<br>
+
+	<button type="submit">Enviar</button>
+</form>
+<script>
+	function mostrarDados(event) {
+		event.preventDefault();
+		const dados = new FormData(event.target);
+		let mensagem = 'Dados enviados:\n\n';
+		dados.forEach((value, key) => {
+			mensagem += `${key}: ${value}\n`;
+		});
+		alert(mensagem);
+	}
+</script>
+</body>
+</html>

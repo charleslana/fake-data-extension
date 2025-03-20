@@ -2,6 +2,22 @@
 
 # Atualizações
 
+## Versão 0.0.4
+
+- Adicionado preenchimento de search
+- Adicionado preenchimento de date
+- Adicionado preenchimento de time
+- Adicionado preenchimento de datetime-local
+- Adicionado preenchimento de month
+- Adicionado preenchimento de week
+- Adicionado preenchimento de color
+- Adicionado preenchimento de url
+- Adicionado preenchimento de tel
+- Adicionado preenchimento de range
+- Corrigido preenchimento de textarea
+- Corrigido campo hidden não deve ser preenchido
+- Adição o arquivo test.html para consulta de exemplo
+
 ## Versão 0.0.3
 
 - Adicionado preenchimento de radios
