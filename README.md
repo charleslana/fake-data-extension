@@ -16,7 +16,7 @@
 - Adicionado preenchimento de range
 - Corrigido preenchimento de textarea
 - Corrigido campo hidden não deve ser preenchido
-- Adição o arquivo test.html para consulta de exemplo
+- Adição do arquivo test.html para consulta de exemplo
 
 ## Versão 0.0.3
 
