@@ -2,6 +2,15 @@
 
 # Atualizações
 
+## Versão 0.0.5
+
+- Adicionado preenchimento de cpf no campo selecionado
+- Adicionado preenchimento de celular no campo selecionado
+- Adicionado preenchimento de data de nascimento no campo selecionado
+- Adicionado preenchimento de e-mail no campo selecionado
+- Adicionado preenchimento de nome e sobrenome no campo selecionado
+- Outras correções gerais
+
 ## Versão 0.0.4
 
 - Adicionado preenchimento de search

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Fake Data By Charles",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Preenche formulários automaticamente com dados falsos.",
   "icons": {
     "16": "icons/icon16.png",
@@ -39,7 +39,7 @@
       "suggested_key": {
         "default": "Ctrl+Shift+F"
       },
-      "description": "Preencher apenas o campo em foco"
+      "description": "Preencher aleatoriamente este campo"
     },
     "fill-all": {
       "suggested_key": {
@@ -50,6 +50,18 @@
         "linux": "Ctrl+Shift+Y"
       },
       "description": "Preencher todos os campos"
+    },
+    "fill-cpf": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+L"
+      },
+      "description": "Preencher CPF"
+    },
+    "fill-phone": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+H"
+      },
+      "description": "Preencher Telefone"
     }
   }
 }

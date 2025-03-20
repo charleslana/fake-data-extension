@@ -1,43 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-	<meta charset="UTF-8" />
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-	<title>Configurações</title>
-	<link href="styles.css" rel="stylesheet" />
-	<link href="bulma.min.css" rel="stylesheet" />
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Configurações</title>
+    <link href="styles.css" rel="stylesheet"/>
+    <link href="bulma.min.css" rel="stylesheet"/>
 </head>
 <body class="has-background-light">
-<div
-	class="box is-flex is-flex-direction-column is-justify-content-space-between is-radiusless"
-	style="height: 100vh"
->
-	<div class="mb-5">
-		<h2 class="title is-4 has-text-centered">Fake Data</h2>
-		<div class="card">
-			<div class="card-content">
-				<div class="content has-text-centered">
-					Atalho Ctrl+Shift+F para preencher apenas um campo
-					<small>(Mantenha o campo focado)</small>
-				</div>
-				<div class="content has-text-centered">
-					Atalho Ctrl+Shift+Y para preencher todos os campos
-				</div>
-			</div>
-		</div>
-		<div class="buttons is-centered">
-			<button class="button is-primary is-fullwidth" id="fillForm">
-				Preencher todos os campos
-			</button>
-			<button class="button is-link is-fullwidth" id="openSettings">
-				Abrir configurações
-			</button>
-		</div>
-	</div>
-	<footer class="has-text-centered">
-		<small>Developed by Charles</small>
-		<p class="mt-5"></p>
-	</footer>
+<div class="box is-flex is-flex-direction-column is-justify-content-space-between is-radiusless" style="height: 100vh">
+    <div class="mb-5">
+        <h2 class="title is-4 has-text-centered">Fake Data</h2>
+        <div class="card">
+            <div class="card-content">
+                <div class="content has-text-centered">
+                    Atalho Ctrl+Shift+F para preencher apenas um campo
+                    <small>(Mantenha o campo focado)</small>
+                </div>
+                <div class="content has-text-centered">
+                    Atalho Ctrl+Shift+Y para preencher todos os campos
+                </div>
+                <div class="content has-text-centered">
+                    Atalho Ctrl+Shift+L para preencher o campo com CPF
+                </div>
+                <div class="content has-text-centered">
+                    Atalho Ctrl+Shift+H para preencher o campo telefone
+                </div>
+            </div>
+        </div>
+        <div class="buttons is-centered">
+            <button class="button is-primary is-fullwidth" id="fillForm">
+                Preencher todos os campos
+            </button>
+            <button class="button is-link is-fullwidth" id="openSettings">
+                Abrir configurações
+            </button>
+        </div>
+    </div>
+    <footer class="has-text-centered">
+        <small>Developed by Charles</small>
+        <p class="mt-5"></p>
+    </footer>
 </div>
 <script src="dist/popup.js"></script>
 </body>
