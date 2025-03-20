@@ -1,116 +1,110 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-	<meta charset="UTF-8" />
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-	<title>Configurações</title>
-	<link href="styles.css" rel="stylesheet" />
-	<link href="bulma.min.css" rel="stylesheet" />
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Configurações</title>
+    <link href="styles.css" rel="stylesheet"/>
+    <link href="bulma.min.css" rel="stylesheet"/>
 </head>
 <body class="has-fullheight">
 <div class="container mt-5">
-	<h2 class="title is-4 has-text-centered">Configurações da Extensão</h2>
+    <h2 class="title is-4 has-text-centered">Configurações da Extensão</h2>
 
-	<div class="field">
-		<label class="label" for="customDomain"
-		>Domínio Personalizado para E-mails:</label
-		>
-		<div class="control">
-			<input
-				class="input"
-				id="customDomain"
-				placeholder="ex: meu-dominio.com"
-				type="text"
-			/>
-		</div>
-	</div>
+    <div class="field">
+        <label class="label" for="customDomain"
+        >Domínio Personalizado para E-mails:</label
+        >
+        <div class="control">
+            <input class="input" id="customDomain" placeholder="ex: meu-dominio.com" type="text"/>
+        </div>
+    </div>
 
-	<div class="field">
-		<label class="label" for="">Mostrar senhas preenchidas:</label>
-		<label class="checkbox">
-			<input id="showPassword" type="checkbox" />
-			Habilitar
-		</label>
-	</div>
+    <div class="field">
+        <label class="label" for="">Mostrar senhas preenchidas:</label>
+        <label class="checkbox">
+            <input id="showPassword" type="checkbox"/>
+            Habilitar
+        </label>
+    </div>
 
-	<div class="field">
-		<label class="label" for="language"
-		>Idioma para geração de dados:</label
-		>
-		<div class="control">
-			<div class="select is-fullwidth">
-				<select id="language">
-					<option selected value="en">Inglês</option>
-					<option value="pt_BR">Português</option>
-					<option value="es">Espanhol</option>
-				</select>
-			</div>
-		</div>
-	</div>
+    <div class="field">
+        <label class="label" for="language">Idioma para geração de dados:</label>
+        <div class="control">
+            <div class="select is-fullwidth">
+                <select id="language">
+                    <option value="pt_BR">Português</option>
+                    <option value="en">Inglês</option>
+                    <option value="es">Espanhol</option>
+                </select>
+            </div>
+        </div>
+    </div>
 
-	<div class="field">
-		<label class="label" for="">Definir tamanho máximo dos textos:</label>
-	</div>
+    <div class="field">
+        <label class="label" for="">Definir tamanho máximo dos textos:</label>
+    </div>
 
-	<div class="field is-horizontal">
-		<div class="field-body is-flex is-align-items-center">
-			<div class="field">
-				<label class="checkbox">
-					<input id="limitTextLength" type="checkbox" />
-					Habilitar
-				</label>
-			</div>
-			<div class="field">
-				<p class="control is-expanded">
-					<input
-						class="input ml-2"
-						disabled
-						id="maxTextLength"
-						min="1"
-						type="number"
-						value="255"
-					/>
-				</p>
-			</div>
-		</div>
-	</div>
+    <div class="field is-horizontal">
+        <div class="field-body is-flex is-align-items-center">
+            <div class="field">
+                <label class="checkbox">
+                    <input id="limitTextLength" type="checkbox"/>
+                    Habilitar
+                </label>
+            </div>
+            <div class="field">
+                <p class="control is-expanded">
+                    <input class="input ml-2" disabled id="maxTextLength" min="1" type="number" value="255"/>
+                </p>
+            </div>
+        </div>
+    </div>
 
-	<div class="field">
-		<label class="label" for="">Selecionar opções aleatórias dos seletores:</label>
-		<label class="checkbox">
-			<input id="randomSelects" type="checkbox" />
-			Habilitar
-		</label>
-	</div>
+    <div class="field">
+        <label class="label" for="">Selecionar opções aleatórias dos seletores:</label>
+        <label class="checkbox">
+            <input id="randomSelects" type="checkbox"/>
+            Habilitar
+        </label>
+    </div>
 
-	<div class="field">
-		<label class="label" for="">Marcar checkboxes automaticamente:</label>
-		<label class="checkbox">
-			<input checked id="autoCheckCheckboxes" type="checkbox" />
-			Habilitar
-		</label>
-	</div>
+    <div class="field">
+        <label class="label" for="">Marcar checkboxes automaticamente:</label>
+        <label class="checkbox">
+            <input checked id="autoCheckCheckboxes" type="checkbox"/>
+            Habilitar
+        </label>
+    </div>
 
-	<div class="field">
-		<label class="label" for="">Selecionar opções aleatórias do grupo do radio:</label>
-		<label class="checkbox">
-			<input id="randomRadios" type="checkbox" />
-			Habilitar
-		</label>
-	</div>
+    <div class="field">
+        <label class="label" for="">Selecionar opções aleatórias do grupo do radio:</label>
+        <label class="checkbox">
+            <input id="randomRadios" type="checkbox"/>
+            Habilitar
+        </label>
+    </div>
 
-	<div class="field">
-		<div class="control">
-			<button class="button is-primary" id="saveSettings">Salvar</button>
-		</div>
-	</div>
+    <div class="field">
+        <label class="label" for="formatCpf">Usar CPF formatado:</label>
+        <label class="checkbox">
+            <input checked id="formatCpf" type="checkbox"/>
+            Habilitar CPF com pontuação (XXX.XXX.XXX-XX)
+        </label>
+    </div>
+
+    <div class="field">
+        <div class="control">
+            <button class="button is-primary" id="saveSettings">Salvar</button>
+        </div>
+    </div>
 </div>
 
 <footer class="footer">
-	<div class="content has-text-centered">
-		<p>Developed by <strong>Charles</strong></p>
-		<p>Versão: <span class="tag is-normal" id="version"></span></p>
-	</div>
+    <div class="content has-text-centered">
+        <p>Developed by <strong>Charles</strong></p>
+        <p>Versão: <span class="tag is-normal" id="version"></span></p>
+    </div>
 </footer>
 
 <script src="dist/options.js"></script>
