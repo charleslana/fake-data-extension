@@ -2,6 +2,11 @@
 
 # Atualizações
 
+## Versão 0.0.6
+
+- Adicionado preenchimento de cep com validez no campo selecionado
+- Outras correções gerais
+
 ## Versão 0.0.5
 
 - Adicionado preenchimento de cpf no campo selecionado

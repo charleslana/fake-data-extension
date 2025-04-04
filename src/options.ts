@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
             'randomSelects',
             'autoCheckCheckboxes',
             'randomRadios',
-            'formatCpf'
+            'formatCpf',
+            'state',
+            'useValidCeps'
         ],
         (data) => {
             const customDomainInput = document.getElementById('customDomain') as HTMLInputElement;
@@ -21,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const autoCheckCheckboxesCheckbox = document.getElementById('autoCheckCheckboxes') as HTMLInputElement;
             const randomRadiosCheckbox = document.getElementById('randomRadios') as HTMLInputElement;
             const formatCpfCheckbox = document.getElementById('formatCpf') as HTMLInputElement;
+            const stateSelect = (document.getElementById('state') as HTMLSelectElement);
+            const useValidCepsCheckbox = document.getElementById('useValidCeps') as HTMLInputElement;
             if (data.customDomain) {
                 customDomainInput.value = data.customDomain;
             }
@@ -50,6 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data.formatCpf !== undefined) {
                 formatCpfCheckbox.checked = data.formatCpf;
             }
+            stateSelect.value = data.state ? data.state : '';
+            useValidCepsCheckbox.checked = data.useValidCeps || false;
         }
     );
 });
@@ -57,13 +63,16 @@ document.addEventListener('DOMContentLoaded', () => {
 document.getElementById('saveSettings')!.addEventListener('click', () => {
     const customDomain = (document.getElementById('customDomain') as HTMLInputElement).value;
     const showPassword = (document.getElementById('showPassword') as HTMLInputElement).checked;
-    const language = (document.getElementById('language') as HTMLInputElement).value;
+    const language = (document.getElementById('language') as HTMLSelectElement).value;
     const limitTextLength = (document.getElementById('limitTextLength') as HTMLInputElement).checked;
     const maxTextLength = (document.getElementById('maxTextLength') as HTMLInputElement).value;
     const randomSelects = (document.getElementById('randomSelects') as HTMLInputElement).checked;
     const autoCheckCheckboxes = (document.getElementById('autoCheckCheckboxes') as HTMLInputElement).checked;
     const randomRadios = (document.getElementById('randomRadios') as HTMLInputElement).checked;
     const formatCpf = (document.getElementById('formatCpf') as HTMLInputElement).checked;
+    const state = (document.getElementById('state') as HTMLSelectElement).value;
+    const useValidCeps = (document.getElementById('useValidCeps') as HTMLInputElement).checked;
+
     chrome.storage.sync.set(
         {
             customDomain,
@@ -74,7 +83,9 @@ document.getElementById('saveSettings')!.addEventListener('click', () => {
             randomSelects,
             autoCheckCheckboxes,
             randomRadios,
-            formatCpf
+            formatCpf,
+            state,
+            useValidCeps
         },
         () => {
             alert('Configurações salva!');
