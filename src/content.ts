@@ -45,7 +45,7 @@ async function getRandomData(inputType: string): Promise<string> {
             return generateLimitedText(faker.person.firstName(), maxLen);
         case 'email': {
             const domain = await getCustomDomain();
-            const emailUser = faker.internet.username();
+            const emailUser = faker.internet.username().toLowerCase();
             const totalMax = maxLen ? maxLen - domain.length - 1 : undefined;
             return generateLimitedText(emailUser, totalMax) + '@' + domain;
         }

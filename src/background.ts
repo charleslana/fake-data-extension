@@ -142,6 +142,17 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
                 (window as any).fillEmailInput();
             }
         });
+    } else if (info.menuItemId === 'fillFullName') {
+        await chrome.scripting.executeScript({
+            target: {tabId: tab!.id!},
+            files: ['dist/content.js']
+        });
+        await chrome.scripting.executeScript({
+            target: {tabId: tab!.id!},
+            func: () => {
+                (window as any).fillFullNameInput();
+            }
+        });
     } else if (info.menuItemId === 'fillCep') {
         await chrome.scripting.executeScript({
             target: {tabId: tab!.id!},
