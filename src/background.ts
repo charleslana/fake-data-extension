@@ -54,6 +54,13 @@ function createContextMenus() {
             title: 'Preencher Nome e Sobrenome',
             contexts: ['editable']
         });
+
+        chrome.contextMenus.create({
+            id: 'fillCep',
+            parentId: 'fakerDataMenu',
+            title: 'Preencher CEP',
+            contexts: ['editable']
+        });
     });
 }
 
@@ -135,7 +142,7 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
                 (window as any).fillEmailInput();
             }
         });
-    } else if (info.menuItemId === 'fillFullName') {
+    } else if (info.menuItemId === 'fillCep') {
         await chrome.scripting.executeScript({
             target: {tabId: tab!.id!},
             files: ['dist/content.js']
@@ -143,7 +150,7 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
         await chrome.scripting.executeScript({
             target: {tabId: tab!.id!},
             func: () => {
-                (window as any).fillFullNameInput();
+                (window as any).fillCepInput();
             }
         });
     }

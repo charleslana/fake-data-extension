@@ -297,6 +297,50 @@ async function fillFullNameInput() {
     }
 }
 
+async function fillCepInput() {
+    const activeElement = document.activeElement as HTMLInputElement | HTMLTextAreaElement;
+    if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')) {
+        const estadoInput = await getSelectedState();
+        const useValidCeps = await getUseValidCeps();
+        if (useValidCeps) {
+            activeElement.value = gerarCep(estadoInput);
+        } else {
+            activeElement.value = fakerBr.cep({estado: estadoInput});
+        }
+        const event = new Event('input', {bubbles: true});
+        activeElement.dispatchEvent(event);
+    }
+}
+
+async function getSelectedState(): Promise<string | null> {
+    return new Promise((resolve) => {
+        chrome.storage.sync.get('state', (data) => {
+            resolve(data.state || null);
+        });
+    });
+}
+
+async function getUseValidCeps(): Promise<boolean> {
+    return new Promise((resolve) => {
+        chrome.storage.sync.get(['useValidCeps'], (data) => {
+            resolve(data.useValidCeps || false);
+        });
+    });
+}
+
+function gerarCep(estado: string | null) {
+    const ceps = require('./ceps.json');
+    if (estado === null) {
+        const estados = Object.keys(ceps);
+        estado = estados[Math.floor(Math.random() * estados.length)];
+    }
+    const stateCeps = ceps[estado];
+    if (!stateCeps || stateCeps.length === 0) {
+        throw new Error('Estado inválido ou sem CEPs disponíveis');
+    }
+    return stateCeps[Math.floor(Math.random() * stateCeps.length)];
+}
+
 (window as any).fillFocusedInput = fillFocusedInput;
 (window as any).fillAllInputs = fillAllInputs;
 (window as any).fillAllSelects = fillAllSelects;
@@ -307,3 +351,4 @@ async function fillFullNameInput() {
 (window as any).fillBirthdateInput = fillBirthdateInput;
 (window as any).fillEmailInput = fillEmailInput;
 (window as any).fillFullNameInput = fillFullNameInput;
+(window as any).fillCepInput = fillCepInput;
